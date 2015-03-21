@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Getting and Cleaning Data Course Project
 ========================================
 
@@ -42,3 +43,7 @@ You should create one R script called run_analysis.R that does the following.
 * Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
 
+=======
+# GetCleanDataProject
+project for Getting and Cleaning Data course
+>>>>>>> 6889e3d05af33e9523f9a27d9fd2c0aaf09907e7
