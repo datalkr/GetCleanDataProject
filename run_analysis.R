@@ -5,7 +5,7 @@
 ## "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 ## and placed in the data director inside the working directory
 
-setwd ("C:/Users/lrobinson2022/Documents/Coursera Classes/GetCleanData_Project1") 
+setwd ("C:/Users/lkr/Documents/Coursera Classes/GetCleanData_Project1") 
 
 ## Read in the test and training data
 xTrain <- read.table("./data/X_train.txt") 
