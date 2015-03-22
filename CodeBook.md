@@ -35,18 +35,17 @@ The script does the following:
  1. Read in the training data, X_train.txt, y_train.txt and subject_train.txt from the "./data/train" folder and store them in xTrain, yTrain, and subjectTrain variables respectively.       
  2. Read in the test data, X_test.txt, y_test.txt and subject_test.txt from the "./data/test" folder and store them in xTest, yTest, and subjectTest variables respectively. 
  3. Read in the  and activity labels from features.txt and activity_labels.txt in the ".data/" directory and store them in features and activity variables, respectively. 
- 4. Merge the training and test data to create one data set. Join xTrain with xTest to give joinData. Concatenate yTrain with yTest to get *joinLabel*; concatenate *testLabel* to *trainLabel* to generate *joinLabel*; concatenate *testSubject* to *trainSubject* to generate  *joinSubject*.  
- 4. Extract the measurements on the mean and standard deviation. This results in a 66 indices list. We get a subset of *joinData* with the 66 corresponding columns.  
+ 4. Merge the training and test data to create one data set. Join xTrain with xTest to give joinData. Concatenate yTrain with yTest to get joinLabel; concatenate subjectTrain with subjectTest to generate joinSubject. 
+ 4. Extract the measurements on the mean and standard deviation. 
  5. Clean the column names of the subset. We remove the "()" and "-" symbols in the names, as well as make the first letter of "mean" and "std" a capital letter "M" and "S" respectively. Replace "f" with FreqDomain and "t" with TimeDomain and.  
  6. Clean the activity names in the second column of *activity*. Make the names lower case and remove underscores.  
- 7. Transform the values of *joinLabel* according to the *activity* data frame.  
- 8. Combine the *joinSubject*, *joinLabel* and *joinData* by column to get a new cleaned data frame, *cleanedData*.   
- 9. Write the *cleanedData* out to "clean_data.txt" file in current working directory.  
- 10. Finally, generate an independent tidy data set with the average of each measurement for each activity and each subject. There are 30 unique subjects and 6 unique activities, which result in a 180 combinations of the two. For each combination, calculate the mean of each measurement with the corresponding combination. So, after initializing the *result* data frame and performing the two for-loops, we get a 180x68 data frame.
+ 7. Transform the values of joinLabel according to the *activity* data frame.  
+ 8. Combine the *joinSubject*, *joinLabel* and *joinData* by column to get a new cleaned data frame, *cleanData*.   
+ 9. Write the *cleanData* out to "clean_data.txt" file in current working directory.  
+ 10. Finally, generate an independent tidy data set with the average of each measurement for each activity and each subject. There are 30 unique subjects and 6 unique activities, which result in a 180 combinations of the two. For each combination, calculate the mean of each measurement with the corresponding combination. So, after initializing the tidyData data frame and performing the two for-loops, we get a 180x68 data frame.
  11. Write the results out to "tidy_data.txt" file in current working directory. 
 
-These signals were used to estimate variables of the feature vector for each pattern:  
-'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions. "t" denotes Time Domainand "f" denotes Frequen
+The following signals were used to estimate variables of the feature vector for each pattern. XYZ denotes that signals were measured in the each of the X, Y, and Z directions. "t" denotes Time Domain and "f" denotes Frequen
 
 * tBodyAcc-XYZ
 * tGravityAcc-XYZ
@@ -87,5 +86,3 @@ References
 2.  <a name="har-smart"/>Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz.
    *Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine*.
    International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
-
-© Lisa Robinson 2015 All Rights reserved.
