@@ -29,13 +29,13 @@ meanStdData <- grep("mean\\(\\)|std\\(\\)", features[, 2])
 joinData <- joinData[, meanStdData] 
 
 ## Clean up some of the n
-names(joinData) <- gsub("\\(\\)", "", features[meanStdData, 2]) # remove "()" 
-names(joinData) <- gsub("mean", "Mean", names(joinData)) # capitalize M 
-names(joinData) <- gsub("std", "Std", names(joinData)) # capitalize S 
-names(joinData) <- gsub("-", "", names(joinData)) # remove "-" in column names  
-names(joinData) <- gsub("BodyBody", "Body", names(joinData)) # replace BodyBody with Body
-names(joinData) <- gsub("^f","FreqDomain",names(joinData)) # Replace f with FreqDomain
-names(joinData) <- gsub("^t","TimeDomain",names(joinData)) # Replace t with TimeDomain
+names(joinData) <- gsub("\\(\\)", "", features[meanStdData, 2]) ## remove "()" 
+names(joinData) <- gsub("mean", "Mean", names(joinData)) ## capitalize M 
+names(joinData) <- gsub("std", "Std", names(joinData)) ## capitalize S 
+names(joinData) <- gsub("-", "", names(joinData)) ## remove "-" in column names  
+names(joinData) <- gsub("BodyBody", "Body", names(joinData)) ## replace BodyBody with Body
+names(joinData) <- gsub("^f","FreqDomain",names(joinData)) ## Replace f with FreqDomain
+names(joinData) <- gsub("^t","TimeDomain",names(joinData)) ## Replace t with TimeDomain
 
 ## Uses descriptive activity names to name the activities in  
 ## the data set 
@@ -55,26 +55,25 @@ cleanData <- cbind(joinSubject, joinLabel, joinData)
 ## Write out the clean data set
 write.table(cleanData, "clean_data.txt")
 
-
 ## Creates a second, independent tidy data set with the average of  
 ## each variable for each activity and each subject.  
-subjectLength <- length(table(joinSubject)) # 30 
-activityLength <- dim(activity)[1] # 6 
+subjectLength <- length(table(joinSubject)) ## 30 
+activityLength <- dim(activity)[1] ## 6 
 columnLength <- dim(cleanData)[2] 
 tidyData <- matrix(NA, nrow=subjectLength*activityLength, ncol=columnLength)  
-tidyData <- as.data.frame(result) 
+tidyData <- as.data.frame(tidyData) 
 colnames(tidyData) <- colnames(cleanData) 
 row <- 1 
 for(i in 1:subjectLength) { 
   for(j in 1:activityLength) { 
     tidyData[row, 1] <- sort(unique(joinSubject)[, 1])[i] 
     tidyData[row, 2] <- activity[j, 2] 
-    bool1 <- i == cleanData$subject 
-    bool2 <- activity[j, 2] == cleanData$activity 
-    result[row, 3:columnLength] <- colMeans(cleanData[bool1&bool2, 3:columnLength]) 
+    cnt1 <- i == cleanData$subject 
+    cnt2 <- activity[j, 2] == cleanData$activity 
+    tidyData[row, 3:columnLength] <- colMeans(cleanData[cnt1&cnt2, 3:columnLength]) 
     row <- row + 1 
   } 
 } 
-head(result) 
+#head(tidyData)
 ## Write out tidy data set
 write.table(tidyData, "tidy_data.txt", row.names = FALSE) 
