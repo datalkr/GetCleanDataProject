@@ -1,9 +1,8 @@
 ## Script name: run_analysis.R
 ## Course 3 - Getting and Cleaning Data Course Project
 
-## The data has been dowloaded and unzipped from: 
-## "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-## and placed in the data director inside the working directory
+## The data has been dowloaded and unzipped and placed 
+## in the data directory inside the working directory
 
 setwd ("C:/Users/lkr/Documents/CourseraClasses/GetCleanData_Project") 
 
@@ -24,11 +23,10 @@ joinSubject <- rbind(subjectTrain, subjectTest)
 
 ## Extracts only the measurements on the mean and standard  
 ## deviation for each measurement.  
-
 meanStdData <- grep("mean\\(\\)|std\\(\\)", features[, 2]) 
 joinData <- joinData[, meanStdData] 
 
-## Clean up some of the n
+## Clean up some of the names
 names(joinData) <- gsub("\\(\\)", "", features[meanStdData, 2]) ## remove "()" 
 names(joinData) <- gsub("mean", "Mean", names(joinData)) ## capitalize M 
 names(joinData) <- gsub("std", "Std", names(joinData)) ## capitalize S 
@@ -37,9 +35,8 @@ names(joinData) <- gsub("BodyBody", "Body", names(joinData)) ## replace BodyBody
 names(joinData) <- gsub("^f","FreqDomain",names(joinData)) ## Replace f with FreqDomain
 names(joinData) <- gsub("^t","TimeDomain",names(joinData)) ## Replace t with TimeDomain
 
-## Uses descriptive activity names to name the activities in  
-## the data set 
- 
+## Uses descriptive activity names to name the activities   
+## in the data set 
 activity[, 2] <- tolower(gsub("_", "", activity[, 2])) 
 substr(activity[2, 2], 8, 8) <- toupper(substr(activity[2, 2], 8, 8)) 
 substr(activity[3, 2], 8, 8) <- toupper(substr(activity[3, 2], 8, 8)) 
@@ -55,10 +52,10 @@ cleanData <- cbind(joinSubject, joinLabel, joinData)
 ## Write out the clean data set
 write.table(cleanData, "clean_data.txt")
 
-## Creates a second, independent tidy data set with the average of  
-## each variable for each activity and each subject.  
-subjectLength <- length(table(joinSubject)) ## 30 
-activityLength <- dim(activity)[1] ## 6 
+## Create a tidy data set with the average of each 
+## variable for each activity and each subject.  
+subjectLength <- length(table(joinSubject))  
+activityLength <- dim(activity)[1]  
 columnLength <- dim(cleanData)[2] 
 tidyData <- matrix(NA, nrow=subjectLength*activityLength, ncol=columnLength)  
 tidyData <- as.data.frame(tidyData) 
