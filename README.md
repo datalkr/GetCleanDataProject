@@ -9,7 +9,7 @@ Project of [Getting and Cleaning Data course on Coursera](https://www.coursera.o
 * __README.md__: this file
 * __run_analysis.R__: R script to transform raw data set into a tidy one
 * __CodeBook.md__: explains the transformations performed and the resulting data and variables
-* _tidy_data.txt_: tidy data output
+* __tidy_data.txt__: tidy data output
 
 
 ## Project Description
